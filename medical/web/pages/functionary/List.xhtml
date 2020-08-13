@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListFunctionaryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListFunctionaryEmpty}" rendered="#{functionaryController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{functionaryController.items.rowCount > 0}">
+                    <h:outputText value="#{functionaryController.pagination.pageFirstItem + 1}..#{functionaryController.pagination.pageLastItem + 1}/#{functionaryController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{functionaryController.previous}" value="#{bundle.Previous} #{functionaryController.pagination.pageSize}" rendered="#{functionaryController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{functionaryController.next}" value="#{bundle.Next} #{functionaryController.pagination.pageSize}" rendered="#{functionaryController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{functionaryController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFunctionaryTitle_idDocument}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDocument}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFunctionaryTitle_firstName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.firstName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFunctionaryTitle_middleName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.middleName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFunctionaryTitle_thirdName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.thirdName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFunctionaryTitle_lastName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lastName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFunctionaryTitle_idFunctionaryType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idFunctionaryType}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFunctionaryTitle_admissionDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.admissionDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFunctionaryTitle_idWorkArea}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idWorkArea}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFunctionaryTitle_idFunctionary}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idFunctionary}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{functionaryController.prepareView}" value="#{bundle.ListFunctionaryViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{functionaryController.prepareEdit}" value="#{bundle.ListFunctionaryEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{functionaryController.destroy}" value="#{bundle.ListFunctionaryDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{functionaryController.prepareCreate}" value="#{bundle.ListFunctionaryCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListFunctionaryIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAppointmentDiagnosisTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAppointmentDiagnosisLabel_idAppointment}" for="idAppointment" />
+                    <h:inputText id="idAppointment" value="#{appointmentDiagnosisController.selected.idAppointment}" title="#{bundle.CreateAppointmentDiagnosisTitle_idAppointment}" />
+                    <h:outputLabel value="#{bundle.CreateAppointmentDiagnosisLabel_idDiagnosis}" for="idDiagnosis" />
+                    <h:inputText id="idDiagnosis" value="#{appointmentDiagnosisController.selected.idDiagnosis}" title="#{bundle.CreateAppointmentDiagnosisTitle_idDiagnosis}" />
+                    <h:outputLabel value="#{bundle.CreateAppointmentDiagnosisLabel_idLevel}" for="idLevel" />
+                    <h:inputText id="idLevel" value="#{appointmentDiagnosisController.selected.idLevel}" title="#{bundle.CreateAppointmentDiagnosisTitle_idLevel}" />
+                    <h:outputLabel value="#{bundle.CreateAppointmentDiagnosisLabel_idAppointementDiagnosis}" for="idAppointementDiagnosis" />
+                    <h:inputText id="idAppointementDiagnosis" value="#{appointmentDiagnosisController.selected.idAppointementDiagnosis}" title="#{bundle.CreateAppointmentDiagnosisTitle_idAppointementDiagnosis}" required="true" requiredMessage="#{bundle.CreateAppointmentDiagnosisRequiredMessage_idAppointementDiagnosis}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{appointmentDiagnosisController.create}" value="#{bundle.CreateAppointmentDiagnosisSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{appointmentDiagnosisController.prepareList}" value="#{bundle.CreateAppointmentDiagnosisShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAppointmentDiagnosisIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPhonesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPhonesLabel_phoneNumber}" for="phoneNumber" />
+                    <h:inputText id="phoneNumber" value="#{phonesController.selected.phoneNumber}" title="#{bundle.EditPhonesTitle_phoneNumber}" />
+                    <h:outputLabel value="#{bundle.EditPhonesLabel_idPhone}" for="idPhone" />
+                    <h:inputText id="idPhone" value="#{phonesController.selected.idPhone}" title="#{bundle.EditPhonesTitle_idPhone}" required="true" requiredMessage="#{bundle.EditPhonesRequiredMessage_idPhone}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{phonesController.update}" value="#{bundle.EditPhonesSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPhonesViewLink}"/>
+                <br />
+                <h:commandLink action="#{phonesController.prepareList}" value="#{bundle.EditPhonesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPhonesIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

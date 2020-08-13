@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditHospitalizationTracingTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditHospitalizationTracingLabel_dateTracing}" for="dateTracing" />
+                    <h:inputText id="dateTracing" value="#{hospitalizationTracingController.selected.dateTracing}" title="#{bundle.EditHospitalizationTracingTitle_dateTracing}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditHospitalizationTracingLabel_idFunctionary}" for="idFunctionary" />
+                    <h:inputText id="idFunctionary" value="#{hospitalizationTracingController.selected.idFunctionary}" title="#{bundle.EditHospitalizationTracingTitle_idFunctionary}" />
+                    <h:outputLabel value="#{bundle.EditHospitalizationTracingLabel_comments}" for="comments" />
+                    <h:inputText id="comments" value="#{hospitalizationTracingController.selected.comments}" title="#{bundle.EditHospitalizationTracingTitle_comments}" />
+                    <h:outputLabel value="#{bundle.EditHospitalizationTracingLabel_idTreatment}" for="idTreatment" />
+                    <h:inputText id="idTreatment" value="#{hospitalizationTracingController.selected.idTreatment}" title="#{bundle.EditHospitalizationTracingTitle_idTreatment}" />
+                    <h:outputLabel value="#{bundle.EditHospitalizationTracingLabel_idHospitalization}" for="idHospitalization" />
+                    <h:inputText id="idHospitalization" value="#{hospitalizationTracingController.selected.idHospitalization}" title="#{bundle.EditHospitalizationTracingTitle_idHospitalization}" />
+                    <h:outputLabel value="#{bundle.EditHospitalizationTracingLabel_idHospitalizationTracing}" for="idHospitalizationTracing" />
+                    <h:inputText id="idHospitalizationTracing" value="#{hospitalizationTracingController.selected.idHospitalizationTracing}" title="#{bundle.EditHospitalizationTracingTitle_idHospitalizationTracing}" required="true" requiredMessage="#{bundle.EditHospitalizationTracingRequiredMessage_idHospitalizationTracing}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{hospitalizationTracingController.update}" value="#{bundle.EditHospitalizationTracingSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditHospitalizationTracingViewLink}"/>
+                <br />
+                <h:commandLink action="#{hospitalizationTracingController.prepareList}" value="#{bundle.EditHospitalizationTracingShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditHospitalizationTracingIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAttentionCenterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAttentionCenterLabel_centerName}" for="centerName" />
+                    <h:inputText id="centerName" value="#{attentionCenterController.selected.centerName}" title="#{bundle.CreateAttentionCenterTitle_centerName}" />
+                    <h:outputLabel value="#{bundle.CreateAttentionCenterLabel_centerLocation}" for="centerLocation" />
+                    <h:inputText id="centerLocation" value="#{attentionCenterController.selected.centerLocation}" title="#{bundle.CreateAttentionCenterTitle_centerLocation}" />
+                    <h:outputLabel value="#{bundle.CreateAttentionCenterLabel_centerCapacity}" for="centerCapacity" />
+                    <h:inputText id="centerCapacity" value="#{attentionCenterController.selected.centerCapacity}" title="#{bundle.CreateAttentionCenterTitle_centerCapacity}" />
+                    <h:outputLabel value="#{bundle.CreateAttentionCenterLabel_idCenterType}" for="idCenterType" />
+                    <h:inputText id="idCenterType" value="#{attentionCenterController.selected.idCenterType}" title="#{bundle.CreateAttentionCenterTitle_idCenterType}" />
+                    <h:outputLabel value="#{bundle.CreateAttentionCenterLabel_idAttentionCenter}" for="idAttentionCenter" />
+                    <h:inputText id="idAttentionCenter" value="#{attentionCenterController.selected.idAttentionCenter}" title="#{bundle.CreateAttentionCenterTitle_idAttentionCenter}" required="true" requiredMessage="#{bundle.CreateAttentionCenterRequiredMessage_idAttentionCenter}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{attentionCenterController.create}" value="#{bundle.CreateAttentionCenterSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{attentionCenterController.prepareList}" value="#{bundle.CreateAttentionCenterShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAttentionCenterIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFunctionaryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateFunctionaryLabel_idDocument}" for="idDocument" />
+                    <h:inputText id="idDocument" value="#{functionaryController.selected.idDocument}" title="#{bundle.CreateFunctionaryTitle_idDocument}" />
+                    <h:outputLabel value="#{bundle.CreateFunctionaryLabel_firstName}" for="firstName" />
+                    <h:inputText id="firstName" value="#{functionaryController.selected.firstName}" title="#{bundle.CreateFunctionaryTitle_firstName}" />
+                    <h:outputLabel value="#{bundle.CreateFunctionaryLabel_middleName}" for="middleName" />
+                    <h:inputText id="middleName" value="#{functionaryController.selected.middleName}" title="#{bundle.CreateFunctionaryTitle_middleName}" />
+                    <h:outputLabel value="#{bundle.CreateFunctionaryLabel_thirdName}" for="thirdName" />
+                    <h:inputText id="thirdName" value="#{functionaryController.selected.thirdName}" title="#{bundle.CreateFunctionaryTitle_thirdName}" />
+                    <h:outputLabel value="#{bundle.CreateFunctionaryLabel_lastName}" for="lastName" />
+                    <h:inputText id="lastName" value="#{functionaryController.selected.lastName}" title="#{bundle.CreateFunctionaryTitle_lastName}" />
+                    <h:outputLabel value="#{bundle.CreateFunctionaryLabel_idFunctionaryType}" for="idFunctionaryType" />
+                    <h:inputText id="idFunctionaryType" value="#{functionaryController.selected.idFunctionaryType}" title="#{bundle.CreateFunctionaryTitle_idFunctionaryType}" />
+                    <h:outputLabel value="#{bundle.CreateFunctionaryLabel_admissionDate}" for="admissionDate" />
+                    <h:inputText id="admissionDate" value="#{functionaryController.selected.admissionDate}" title="#{bundle.CreateFunctionaryTitle_admissionDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateFunctionaryLabel_idWorkArea}" for="idWorkArea" />
+                    <h:inputText id="idWorkArea" value="#{functionaryController.selected.idWorkArea}" title="#{bundle.CreateFunctionaryTitle_idWorkArea}" />
+                    <h:outputLabel value="#{bundle.CreateFunctionaryLabel_idFunctionary}" for="idFunctionary" />
+                    <h:inputText id="idFunctionary" value="#{functionaryController.selected.idFunctionary}" title="#{bundle.CreateFunctionaryTitle_idFunctionary}" required="true" requiredMessage="#{bundle.CreateFunctionaryRequiredMessage_idFunctionary}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{functionaryController.create}" value="#{bundle.CreateFunctionarySaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{functionaryController.prepareList}" value="#{bundle.CreateFunctionaryShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateFunctionaryIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

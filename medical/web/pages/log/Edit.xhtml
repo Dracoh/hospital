@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditLogTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditLogLabel_fromStatus}" for="fromStatus" />
+                    <h:inputText id="fromStatus" value="#{logController.selected.fromStatus}" title="#{bundle.EditLogTitle_fromStatus}" />
+                    <h:outputLabel value="#{bundle.EditLogLabel_toStatus}" for="toStatus" />
+                    <h:inputText id="toStatus" value="#{logController.selected.toStatus}" title="#{bundle.EditLogTitle_toStatus}" />
+                    <h:outputLabel value="#{bundle.EditLogLabel_modifyDate}" for="modifyDate" />
+                    <h:inputText id="modifyDate" value="#{logController.selected.modifyDate}" title="#{bundle.EditLogTitle_modifyDate}" >
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditLogLabel_idUser}" for="idUser" />
+                    <h:inputText id="idUser" value="#{logController.selected.idUser}" title="#{bundle.EditLogTitle_idUser}" />
+                    <h:outputLabel value="#{bundle.EditLogLabel_idAppointment}" for="idAppointment" />
+                    <h:inputText id="idAppointment" value="#{logController.selected.idAppointment}" title="#{bundle.EditLogTitle_idAppointment}" />
+                    <h:outputLabel value="#{bundle.EditLogLabel_idLog}" for="idLog" />
+                    <h:inputText id="idLog" value="#{logController.selected.idLog}" title="#{bundle.EditLogTitle_idLog}" required="true" requiredMessage="#{bundle.EditLogRequiredMessage_idLog}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{logController.update}" value="#{bundle.EditLogSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditLogViewLink}"/>
+                <br />
+                <h:commandLink action="#{logController.prepareList}" value="#{bundle.EditLogShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditLogIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewAttentionCenterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewAttentionCenterLabel_centerName}"/>
+                    <h:outputText value="#{attentionCenterController.selected.centerName}" title="#{bundle.ViewAttentionCenterTitle_centerName}"/>
+                    <h:outputText value="#{bundle.ViewAttentionCenterLabel_centerLocation}"/>
+                    <h:outputText value="#{attentionCenterController.selected.centerLocation}" title="#{bundle.ViewAttentionCenterTitle_centerLocation}"/>
+                    <h:outputText value="#{bundle.ViewAttentionCenterLabel_centerCapacity}"/>
+                    <h:outputText value="#{attentionCenterController.selected.centerCapacity}" title="#{bundle.ViewAttentionCenterTitle_centerCapacity}"/>
+                    <h:outputText value="#{bundle.ViewAttentionCenterLabel_idCenterType}"/>
+                    <h:outputText value="#{attentionCenterController.selected.idCenterType}" title="#{bundle.ViewAttentionCenterTitle_idCenterType}"/>
+                    <h:outputText value="#{bundle.ViewAttentionCenterLabel_idAttentionCenter}"/>
+                    <h:outputText value="#{attentionCenterController.selected.idAttentionCenter}" title="#{bundle.ViewAttentionCenterTitle_idAttentionCenter}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{attentionCenterController.destroyAndView}" value="#{bundle.ViewAttentionCenterDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewAttentionCenterEditLink}"/>
+                <br />
+                <h:commandLink action="#{attentionCenterController.prepareCreate}" value="#{bundle.ViewAttentionCenterCreateLink}" />
+                <br />
+                <h:commandLink action="#{attentionCenterController.prepareList}" value="#{bundle.ViewAttentionCenterShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewAttentionCenterIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAttentionCenterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAttentionCenterEmpty}" rendered="#{attentionCenterController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{attentionCenterController.items.rowCount > 0}">
+                    <h:outputText value="#{attentionCenterController.pagination.pageFirstItem + 1}..#{attentionCenterController.pagination.pageLastItem + 1}/#{attentionCenterController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{attentionCenterController.previous}" value="#{bundle.Previous} #{attentionCenterController.pagination.pageSize}" rendered="#{attentionCenterController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{attentionCenterController.next}" value="#{bundle.Next} #{attentionCenterController.pagination.pageSize}" rendered="#{attentionCenterController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{attentionCenterController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAttentionCenterTitle_centerName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.centerName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAttentionCenterTitle_centerLocation}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.centerLocation}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAttentionCenterTitle_centerCapacity}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.centerCapacity}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAttentionCenterTitle_idCenterType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCenterType}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAttentionCenterTitle_idAttentionCenter}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idAttentionCenter}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{attentionCenterController.prepareView}" value="#{bundle.ListAttentionCenterViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{attentionCenterController.prepareEdit}" value="#{bundle.ListAttentionCenterEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{attentionCenterController.destroy}" value="#{bundle.ListAttentionCenterDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{attentionCenterController.prepareCreate}" value="#{bundle.ListAttentionCenterCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListAttentionCenterIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

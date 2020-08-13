@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAppointmentStatusTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAppointmentStatusLabel_statusName}" for="statusName" />
+                    <h:inputText id="statusName" value="#{appointmentStatusController.selected.statusName}" title="#{bundle.EditAppointmentStatusTitle_statusName}" />
+                    <h:outputLabel value="#{bundle.EditAppointmentStatusLabel_statusDescription}" for="statusDescription" />
+                    <h:inputText id="statusDescription" value="#{appointmentStatusController.selected.statusDescription}" title="#{bundle.EditAppointmentStatusTitle_statusDescription}" />
+                    <h:outputLabel value="#{bundle.EditAppointmentStatusLabel_idAppointmentStatus}" for="idAppointmentStatus" />
+                    <h:inputText id="idAppointmentStatus" value="#{appointmentStatusController.selected.idAppointmentStatus}" title="#{bundle.EditAppointmentStatusTitle_idAppointmentStatus}" required="true" requiredMessage="#{bundle.EditAppointmentStatusRequiredMessage_idAppointmentStatus}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{appointmentStatusController.update}" value="#{bundle.EditAppointmentStatusSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAppointmentStatusViewLink}"/>
+                <br />
+                <h:commandLink action="#{appointmentStatusController.prepareList}" value="#{bundle.EditAppointmentStatusShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAppointmentStatusIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

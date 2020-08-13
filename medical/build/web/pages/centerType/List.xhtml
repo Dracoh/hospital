@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCenterTypeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCenterTypeEmpty}" rendered="#{centerTypeController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{centerTypeController.items.rowCount > 0}">
+                    <h:outputText value="#{centerTypeController.pagination.pageFirstItem + 1}..#{centerTypeController.pagination.pageLastItem + 1}/#{centerTypeController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{centerTypeController.previous}" value="#{bundle.Previous} #{centerTypeController.pagination.pageSize}" rendered="#{centerTypeController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{centerTypeController.next}" value="#{bundle.Next} #{centerTypeController.pagination.pageSize}" rendered="#{centerTypeController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{centerTypeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCenterTypeTitle_centerTypeName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.centerTypeName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCenterTypeTitle_idCenterType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCenterType}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{centerTypeController.prepareView}" value="#{bundle.ListCenterTypeViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{centerTypeController.prepareEdit}" value="#{bundle.ListCenterTypeEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{centerTypeController.destroy}" value="#{bundle.ListCenterTypeDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{centerTypeController.prepareCreate}" value="#{bundle.ListCenterTypeCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCenterTypeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

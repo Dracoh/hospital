@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTreatmentTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTreatmentEmpty}" rendered="#{treatmentController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{treatmentController.items.rowCount > 0}">
+                    <h:outputText value="#{treatmentController.pagination.pageFirstItem + 1}..#{treatmentController.pagination.pageLastItem + 1}/#{treatmentController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{treatmentController.previous}" value="#{bundle.Previous} #{treatmentController.pagination.pageSize}" rendered="#{treatmentController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{treatmentController.next}" value="#{bundle.Next} #{treatmentController.pagination.pageSize}" rendered="#{treatmentController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{treatmentController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTreatmentTitle_treatmentName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.treatmentName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTreatmentTitle_doseMeasure}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.doseMeasure}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTreatmentTitle_doseQuantity}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.doseQuantity}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTreatmentTitle_idTreatmentType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTreatmentType}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTreatmentTitle_idTreatment}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTreatment}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{treatmentController.prepareView}" value="#{bundle.ListTreatmentViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{treatmentController.prepareEdit}" value="#{bundle.ListTreatmentEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{treatmentController.destroy}" value="#{bundle.ListTreatmentDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{treatmentController.prepareCreate}" value="#{bundle.ListTreatmentCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTreatmentIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

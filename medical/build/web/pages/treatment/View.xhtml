@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTreatmentTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTreatmentLabel_treatmentName}"/>
+                    <h:outputText value="#{treatmentController.selected.treatmentName}" title="#{bundle.ViewTreatmentTitle_treatmentName}"/>
+                    <h:outputText value="#{bundle.ViewTreatmentLabel_doseMeasure}"/>
+                    <h:outputText value="#{treatmentController.selected.doseMeasure}" title="#{bundle.ViewTreatmentTitle_doseMeasure}"/>
+                    <h:outputText value="#{bundle.ViewTreatmentLabel_doseQuantity}"/>
+                    <h:outputText value="#{treatmentController.selected.doseQuantity}" title="#{bundle.ViewTreatmentTitle_doseQuantity}"/>
+                    <h:outputText value="#{bundle.ViewTreatmentLabel_idTreatmentType}"/>
+                    <h:outputText value="#{treatmentController.selected.idTreatmentType}" title="#{bundle.ViewTreatmentTitle_idTreatmentType}"/>
+                    <h:outputText value="#{bundle.ViewTreatmentLabel_idTreatment}"/>
+                    <h:outputText value="#{treatmentController.selected.idTreatment}" title="#{bundle.ViewTreatmentTitle_idTreatment}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{treatmentController.destroyAndView}" value="#{bundle.ViewTreatmentDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTreatmentEditLink}"/>
+                <br />
+                <h:commandLink action="#{treatmentController.prepareCreate}" value="#{bundle.ViewTreatmentCreateLink}" />
+                <br />
+                <h:commandLink action="#{treatmentController.prepareList}" value="#{bundle.ViewTreatmentShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTreatmentIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

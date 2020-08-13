@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePatientTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePatientLabel_patientName}" for="patientName" />
+                    <h:inputText id="patientName" value="#{patientController.selected.patientName}" title="#{bundle.CreatePatientTitle_patientName}" />
+                    <h:outputLabel value="#{bundle.CreatePatientLabel_birthday}" for="birthday" />
+                    <h:inputText id="birthday" value="#{patientController.selected.birthday}" title="#{bundle.CreatePatientTitle_birthday}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePatientLabel_bloodType}" for="bloodType" />
+                    <h:inputText id="bloodType" value="#{patientController.selected.bloodType}" title="#{bundle.CreatePatientTitle_bloodType}" />
+                    <h:outputLabel value="#{bundle.CreatePatientLabel_nationality}" for="nationality" />
+                    <h:inputText id="nationality" value="#{patientController.selected.nationality}" title="#{bundle.CreatePatientTitle_nationality}" />
+                    <h:outputLabel value="#{bundle.CreatePatientLabel_address}" for="address" />
+                    <h:inputText id="address" value="#{patientController.selected.address}" title="#{bundle.CreatePatientTitle_address}" />
+                    <h:outputLabel value="#{bundle.CreatePatientLabel_idPhone}" for="idPhone" />
+                    <h:inputText id="idPhone" value="#{patientController.selected.idPhone}" title="#{bundle.CreatePatientTitle_idPhone}" />
+                    <h:outputLabel value="#{bundle.CreatePatientLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{patientController.selected.email}" title="#{bundle.CreatePatientTitle_email}" />
+                    <h:outputLabel value="#{bundle.CreatePatientLabel_idPatient}" for="idPatient" />
+                    <h:inputText id="idPatient" value="#{patientController.selected.idPatient}" title="#{bundle.CreatePatientTitle_idPatient}" required="true" requiredMessage="#{bundle.CreatePatientRequiredMessage_idPatient}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{patientController.create}" value="#{bundle.CreatePatientSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{patientController.prepareList}" value="#{bundle.CreatePatientShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePatientIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
